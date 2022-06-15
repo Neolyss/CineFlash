@@ -23,6 +23,7 @@ android {
     buildTypes {
         debug {
             buildConfigField('String', 'API_KEY', apikeyProperties['apikey'])
+            buildConfigField('String', 'YOUTUBE_API_KEY', apikeyProperties['youtubeapikey'])
         }
         release {
             minifyEnabled false
