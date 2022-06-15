@@ -54,4 +54,16 @@
     <string name="start_capture">Start Capture</string>
     <string name="stop_capture">Stop Capture</string>
     <string name="fab_content_desc">scan</string>
+
+    <string name="imdb">IMDB Rating</string>
+    <string name="metacritic">Metacritic Rating</string>
+    <string name="tomato">Tomato Rating</string>
+
+    <string name="note">6,8/10</string>
+    <string name="voteNumber">335k</string>
+
+    <string name="filmTitle">Film Title</string>
+    <string name="dateTime">DD MM YYYY · HHhMM</string>
+    <string name="noteDesc">Notes</string>
+
 </resources>

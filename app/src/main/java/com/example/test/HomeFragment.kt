@@ -1,6 +1,7 @@
 package com.example.test
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Camera
 import android.os.Build
@@ -71,6 +72,9 @@ class HomeFragment : Fragment() {
         }
 
         //binding.imageCaptureButton.setOnClickListener { takePhoto() }
+        binding.researchBtn.setOnClickListener {
+            startActivity(Intent(context, MovieActivity::class.java))
+        }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
 
