@@ -1,10 +1,12 @@
 package com.example.test
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -32,7 +34,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
         setContentView(binding.root)
+
+
+
 
         setSupportActionBar(binding.toolbar)
 
@@ -63,7 +69,6 @@ class MainActivity : AppCompatActivity() {
                 else -> false
             }
         }
-
         /*binding.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAnchorView(R.id.fab)
