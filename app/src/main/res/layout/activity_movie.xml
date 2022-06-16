@@ -20,7 +20,7 @@
             android:layout_height="?attr/actionBarSize"
             android:fitsSystemWindows="false"
             android:textAlignment="center"
-            app:navigationIcon="@drawable/outline_menu"
+            app:navigationIcon="@drawable/outline_arrow_back_24"
             app:title="@string/app_name" />
 
     </com.google.android.material.appbar.AppBarLayout>

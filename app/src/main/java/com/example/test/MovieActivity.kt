@@ -1,8 +1,10 @@
 package com.example.test
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.test.data.movie.Movie
@@ -34,9 +36,18 @@ class MovieActivity : YouTubeBaseActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
         setContentView(binding.root)
 
+        binding.toolbar.setNavigationOnClickListener {
+            val intent : Intent = Intent(this.baseContext, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        // Retrieve id of the film
+        val extras: Bundle? = intent.extras
+        val idFilm : String = extras?.getString("idFilm")!!
+
         val movieService = MovieService(this.baseContext)
 
-        movieService.getMovie("tt3896198", object : CallMovie() {
+        movieService.getMovie(idFilm, object : CallMovie() {
             override fun fireOnResponse(data: Movie) {
                 Log.d("Test", data.toString())
                 binding.title.text = data.title
@@ -63,7 +74,7 @@ class MovieActivity : YouTubeBaseActivity() {
             }
         })
 
-        movieService.getTrailer("tt3896198", object : CallTrailer() {
+        movieService.getTrailer(idFilm, object : CallTrailer() {
             override fun fireOnResponse(data: YoutubeTrailer) {
                 // Initialize youtube video
                 val view : YouTubePlayerView = binding.trailer
@@ -73,8 +84,7 @@ class MovieActivity : YouTubeBaseActivity() {
                         player : YouTubePlayer?,
                         wasRestored : Boolean
                     ) {
-                        player?.loadVideo(data.videoId)
-                        player?.play()
+                        player?.cueVideo(data.videoId)
                     }
 
                     override fun onInitializationFailure(
@@ -91,4 +101,5 @@ class MovieActivity : YouTubeBaseActivity() {
 
 
     }
+
 }

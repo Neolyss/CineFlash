@@ -1,5 +1,6 @@
 package com.example.test.adapters
 
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View.inflate
@@ -10,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
+import com.example.test.MovieActivity
 import com.example.test.data.trends.Trends
 import com.example.test.databinding.ActivityMainBinding.inflate
 import com.example.test.databinding.FilmCardBinding
@@ -38,14 +40,12 @@ class TrendAdapter(private val trends : Trends, private val fragment: Fragment) 
         }
 
         Glide.with(holder.binding.thumbnail).load(trend.image).into(holder.binding.thumbnail)
-        /*holder.binding.albumTitle.text = album.title
-        holder.binding.dateRelease.text = album.release_date
-        Glide.with(holder.binding.imageView).load(album.cover_medium).into(holder.binding.imageView)
 
         holder.binding.card.setOnClickListener {
-            val args = bundleOf("idAlbum" to album.id)
-            fragment.findNavController().navigate(R.id.action_AlbumFragment_to_TrackFragment, args)
-        }*/
+            val intent : Intent = Intent(this.fragment.context, MovieActivity::class.java)
+            intent.putExtra("idFilm", trend.id)
+            this.fragment.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int = trends.results.size

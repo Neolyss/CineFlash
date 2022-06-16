@@ -1,5 +1,6 @@
 package com.example.test
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
@@ -36,9 +37,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
         setContentView(binding.root)
-
-
-
 
         setSupportActionBar(binding.toolbar)
 

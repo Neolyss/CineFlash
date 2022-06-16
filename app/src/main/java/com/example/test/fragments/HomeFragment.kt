@@ -17,6 +17,7 @@ import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.test.MainActivity
 import com.example.test.MovieActivity
 import com.example.test.databinding.FragmentHomeBinding
 import java.util.concurrent.ExecutorService
@@ -72,7 +73,9 @@ class HomeFragment : Fragment() {
 
         //binding.imageCaptureButton.setOnClickListener { takePhoto() }
         binding.researchBtn.setOnClickListener {
-            startActivity(Intent(context, MovieActivity::class.java))
+            val intent : Intent = Intent(this.context, MovieActivity::class.java)
+            intent.putExtra("idFilm", "tt3896198")
+            startActivity(intent)
         }
 
         cameraExecutor = Executors.newSingleThreadExecutor()
@@ -146,4 +149,5 @@ class HomeFragment : Fragment() {
             }
         }
     }
+
 }
