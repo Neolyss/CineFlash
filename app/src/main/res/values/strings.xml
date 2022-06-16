@@ -65,5 +65,9 @@
     <string name="filmTitle">Film Title</string>
     <string name="dateTime">DD MM YYYY · HHhMM</string>
     <string name="noteDesc">Notes</string>
+    <string name="title">filmTitle</string>
+    <string name="secondary_text">8,3/10</string>
+    <string name="content_description_media">filmPoster</string>
+    <string name="label">Search</string>
 
 </resources>

@@ -57,6 +57,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.3'
     implementation 'com.google.code.gson:gson:2.9.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'com.github.bumptech.glide:glide:4.13.1'
 
     // CameraX core library using the camera2 implementation
     def camerax_version = "1.2.0-alpha02"

@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.test.BuildConfig
 import com.example.test.services.callbacks.CallMovie
 import com.example.test.services.callbacks.CallTrailer
+import com.example.test.services.callbacks.CallTrend
 import com.example.test.services.interceptors.FilmInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -27,6 +28,14 @@ class MovieService(context: Context) {
     fun getTrailer(filmId : String, callback: CallTrailer) {
         val request: Request = Request.Builder()
             .url("http://imdb-api.com/en/API/YouTubeTrailer/" + URLEncoder.encode(BuildConfig.API_KEY, "UTF-8") + "/" + URLEncoder.encode(filmId, "UTF-8"))
+            .build()
+
+        client.newCall(request).enqueue(callback)
+    }
+
+    fun getTrends(category: String, callback : CallTrend) {
+        val request: Request = Request.Builder()
+            .url(" https://imdb-api.com/API/AdvancedSearch/" + URLEncoder.encode(BuildConfig.API_KEY, "UTF-8") + "?keywords=" + URLEncoder.encode(category, "UTF-8"))
             .build()
 
         client.newCall(request).enqueue(callback)

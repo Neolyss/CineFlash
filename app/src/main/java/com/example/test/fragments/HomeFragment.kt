@@ -1,9 +1,8 @@
-package com.example.test
+package com.example.test.fragments
 
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Camera
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -15,11 +14,10 @@ import android.widget.Toast
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageCapture
 import androidx.camera.core.Preview
-import androidx.camera.core.VideoCapture
 import androidx.camera.lifecycle.ProcessCameraProvider
-import androidx.camera.video.Recorder
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.example.test.MovieActivity
 import com.example.test.databinding.FragmentHomeBinding
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -67,7 +65,8 @@ class HomeFragment : Fragment() {
                 ActivityCompat.requestPermissions(
                     it,
                     REQUIRED_PERMISSIONS,
-                    REQUEST_CODE_PERMISSIONS)
+                    REQUEST_CODE_PERMISSIONS
+                )
             }
         }
 

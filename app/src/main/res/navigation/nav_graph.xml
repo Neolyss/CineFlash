@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/HistoryFragment"
-        android:name="com.example.test.HistoryFragment"
+        android:name="com.example.test.fragments.HistoryFragment"
         android:label="@string/history_fragment_label"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/HomeFragment"
-        android:name="com.example.test.HomeFragment"
+        android:name="com.example.test.fragments.HomeFragment"
         android:label="@string/home_fragment_label"
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/MoviesFragment"
-        android:name="com.example.test.MoviesFragment"
+        android:name="com.example.test.fragments.MoviesFragment"
         android:label="@string/movies_fragment_label"
         tools:layout="@layout/fragment_movies" />
 </navigation>

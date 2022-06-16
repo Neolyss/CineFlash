@@ -23,6 +23,9 @@ class FilmInterceptor(val context: Context) : Interceptor {
         } else if(url.contains("YouTubeTrailer")) {
             Log.d("URL", "trailer")
             file = "json/trailer.json"
+        } else if(url.contains("AdvancedSearch")) {
+            Log.d("URL", "category")
+            file = "json/trends.json"
         }
 
         lateinit var jsonString: String
