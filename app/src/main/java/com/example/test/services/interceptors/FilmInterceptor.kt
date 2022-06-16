@@ -1,6 +1,5 @@
 package com.example.test.services.interceptors
 
-import android.app.Application
 import android.content.Context
 import android.util.Log
 import okhttp3.*
@@ -23,9 +22,11 @@ class FilmInterceptor(val context: Context) : Interceptor {
         } else if(url.contains("YouTubeTrailer")) {
             Log.d("URL", "trailer")
             file = "json/trailer.json"
-        } else if(url.contains("AdvancedSearch")) {
+        } else if(url.contains("marvel")) {
             Log.d("URL", "category")
-            file = "json/trends.json"
+            file = "json/trendsMarvel.json"
+        } else if(url.contains("wars")){
+            file = "json/trendsSW.json"
         }
 
         lateinit var jsonString: String

@@ -1,11 +1,13 @@
 package com.example.test.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.test.MovieActivity
 import com.example.test.R
 import com.example.test.adapters.TrendAdapter
 import com.example.test.data.trends.Trends
@@ -45,10 +47,29 @@ class MoviesFragment : Fragment() {
         val movieService = context?.let { MovieService(it) }
         movieService?.getTrends("marvel", object : CallTrend() {
             override fun fireOnResponse(data: Trends) {
-                binding.trends.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-                binding.trends.adapter = TrendAdapter(data, moviesFragment)
+                binding.trendsMarvel.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                binding.trendsMarvel.adapter = TrendAdapter(data, moviesFragment)
             }
         })
+
+        movieService?.getTrends("star wars", object : CallTrend() {
+            override fun fireOnResponse(data: Trends) {
+                binding.trendsSW.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+                binding.trendsSW.adapter = TrendAdapter(data, moviesFragment)
+            }
+        })
+
+        binding.textField.setEndIconOnClickListener {
+            val search = binding.textInput.text
+            // Handle the search
+            //TODO Handle search
+
+            // Launch activity film
+            val intent : Intent = Intent(this.context, MovieActivity::class.java)
+            intent.putExtra("idFilm", "tt3896198")
+            startActivity(intent)
+        }
+
         // Inflate the layout for this fragment
         return binding.root
     }

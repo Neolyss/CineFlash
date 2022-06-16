@@ -37,16 +37,25 @@
                 android:id="@+id/textField"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/label">
+                android:hint="@string/label"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/outline_search_24">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/trends"
+                android:id="@+id/trendsMarvel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:listitem="@layout/film_card" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trendsSW"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
