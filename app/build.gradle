@@ -77,4 +77,5 @@ dependencies {
     implementation("androidx.camera:camera-extensions:${camerax_version}")
 
     implementation files('libs/YoutubeAndroidPlayerApi.jar')
+    implementation 'com.pierfrancescosoffritti.androidyoutubeplayer:core:11.0.1'
 }

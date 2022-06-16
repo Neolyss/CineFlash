@@ -4,26 +4,26 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
-import android.view.Menu
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.NavHostFragment
 import com.example.test.data.movie.Movie
 import com.example.test.data.trailer.YoutubeTrailer
 import com.example.test.databinding.ActivityMovieBinding
 import com.example.test.services.MovieService
 import com.example.test.services.callbacks.CallMovie
 import com.example.test.services.callbacks.CallTrailer
-import com.google.android.youtube.player.YouTubeBaseActivity
-import com.google.android.youtube.player.YouTubeInitializationResult
-import com.google.android.youtube.player.YouTubePlayer
-import com.google.android.youtube.player.YouTubePlayerView
+import com.google.android.material.chip.Chip
+import com.google.android.youtube.player.*
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class MovieActivity : YouTubeBaseActivity() {
+
+class MovieActivity : AppCompatActivity() {
 
     private lateinit var _binding: ActivityMovieBinding
 
@@ -35,10 +35,45 @@ class MovieActivity : YouTubeBaseActivity() {
         _binding = ActivityMovieBinding.inflate(layoutInflater)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
         setContentView(binding.root)
+        //setSupportActionBar(binding.toolbar)
+
+        //val youtubePlayerView : YouTubePlayerView = binding.youtubePlayerView
+       // lifecycle.addObserver(youtubePlayerView);
 
         binding.toolbar.setNavigationOnClickListener {
             val intent : Intent = Intent(this.baseContext, MainActivity::class.java)
             startActivity(intent)
+        }
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_movie) as NavHostFragment
+        val navController = navHostFragment.navController
+
+        binding.bottomNavigation.selectedItemId = R.id.fragment1
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.fragment1 -> {
+                    Log.d("Navigation", "Nav to 1")
+                    navController.navigate(R.id.seancesFragment)
+                    true
+                }
+                R.id.fragment2 -> {
+                    Log.d("Navigation", "Nav to 2")
+                    navController.navigate(R.id.castingFragment)
+                    true
+                }
+                R.id.fragment3 -> {
+                    Log.d("Navigation", "Nav to 3")
+                    navController.navigate(R.id.reviewsFragment)
+                    true
+                }
+                R.id.fragment4 -> {
+                    Log.d("Navigation", "Nav to 4")
+                    navController.navigate(R.id.newsFragment)
+                    true
+                }
+                else -> false
+            }
         }
 
         // Retrieve id of the film
@@ -67,8 +102,18 @@ class MovieActivity : YouTubeBaseActivity() {
                     e.printStackTrace()
                 }
 
+                data.genreList.forEach() {
+                    val chip = Chip(this@MovieActivity)
+                    chip.text = it.key
+                    chip.isCloseIconVisible = false
+                    binding.genres.addView(chip)
+                }
+
                 binding.noteIMDB.text = data.imDbRating
-                binding.numberVoteIMDB.text = data.imDbRatingVotes
+                var numberVotes: String = data.imDbRatingVotes
+                if(numberVotes.length > 3)
+                    numberVotes = numberVotes.removeRange(2, numberVotes.length-1) + "k"
+                binding.numberVoteIMDB.text = numberVotes
                 binding.noteMetacritic.text = data.ratings.metacritic
                 binding.noteTomato.text = data.ratings.rottenTomatoes
             }
@@ -77,29 +122,15 @@ class MovieActivity : YouTubeBaseActivity() {
         movieService.getTrailer(idFilm, object : CallTrailer() {
             override fun fireOnResponse(data: YoutubeTrailer) {
                 // Initialize youtube video
-                val view : YouTubePlayerView = binding.trailer
-                val listener : YouTubePlayer.OnInitializedListener = object : YouTubePlayer.OnInitializedListener {
-                    override fun onInitializationSuccess(
-                        provider : YouTubePlayer.Provider?,
-                        player : YouTubePlayer?,
-                        wasRestored : Boolean
-                    ) {
-                        player?.cueVideo(data.videoId)
-                    }
 
-                    override fun onInitializationFailure(
-                        provider: YouTubePlayer.Provider?,
-                        error : YouTubeInitializationResult?
-                    ) {
-                        Toast.makeText(baseContext, "Video loading failed", Toast.LENGTH_SHORT).show()
+                /*youtubePlayerView.initialize(object :
+                    AbstractYouTubePlayerListener() {
+                    fun onReady(youTubePlayer: YouTubePlayer) {
+                        youTubePlayer.cueVideo(data.videoId, 0)
                     }
-                }
-                val apiKey = BuildConfig.YOUTUBE_API_KEY
-                view.initialize(apiKey, listener)
+                })*/
             }
         })
-
-
     }
 
 }

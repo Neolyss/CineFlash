@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_movie.xml"
+    app:startDestination="@id/seancesFragment">
+
+    <fragment
+        android:id="@+id/castingFragment"
+        android:name="com.example.test.fragments.CastingFragment"
+        android:label="fragment_casting"
+        tools:layout="@layout/fragment_casting" />
+    <fragment
+        android:id="@+id/newsFragment"
+        android:name="com.example.test.fragments.NewsFragment"
+        android:label="fragment_news"
+        tools:layout="@layout/fragment_news" />
+    <fragment
+        android:id="@+id/seancesFragment"
+        android:name="com.example.test.fragments.SeancesFragment"
+        android:label="fragment_seances"
+        tools:layout="@layout/fragment_seances" />
+    <fragment
+        android:id="@+id/reviewsFragment"
+        android:name="com.example.test.fragments.ReviewsFragment"
+        android:label="fragment_reviews"
+        tools:layout="@layout/fragment_reviews" />
+</navigation>

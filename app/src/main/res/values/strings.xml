@@ -71,4 +71,8 @@
     <string name="label">Search</string>
 
     <string name="history">History</string>
+    <string name="news">NEWS</string>
+    <string name="reviews">REVIEWS</string>
+    <string name="casting">CASTING</string>
+    <string name="seances">SEANCES</string>
 </resources>
