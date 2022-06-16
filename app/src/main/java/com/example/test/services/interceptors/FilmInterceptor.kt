@@ -13,7 +13,7 @@ class FilmInterceptor(val context: Context) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         val request : Request = chain.request()
         // see what request it is
-        val url : String = chain.request().url.toString()
+        val url : String = request.url.toString()
 
         var file : String = ""
         if(url.contains("Title")) {
