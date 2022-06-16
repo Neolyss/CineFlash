@@ -7,12 +7,15 @@
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/actors"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        tools:listitem="@layout/actor_view" />
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/crew"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

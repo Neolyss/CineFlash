@@ -5,7 +5,9 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.NavHostFragment
+import com.example.test.data.movie.Actor
 import com.example.test.data.movie.Movie
 import com.example.test.data.trailer.YoutubeTrailer
 import com.example.test.databinding.ActivityMovieBinding
@@ -50,40 +52,18 @@ class MovieActivity : AppCompatActivity() {
 
         binding.bottomNavigation.selectedItemId = R.id.fragment1
 
-        binding.bottomNavigation.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.fragment1 -> {
-                    Log.d("Navigation", "Nav to 1")
-                    navController.navigate(R.id.seancesFragment)
-                    true
-                }
-                R.id.fragment2 -> {
-                    Log.d("Navigation", "Nav to 2")
-                    navController.navigate(R.id.castingFragment)
-                    true
-                }
-                R.id.fragment3 -> {
-                    Log.d("Navigation", "Nav to 3")
-                    navController.navigate(R.id.reviewsFragment)
-                    true
-                }
-                R.id.fragment4 -> {
-                    Log.d("Navigation", "Nav to 4")
-                    navController.navigate(R.id.newsFragment)
-                    true
-                }
-                else -> false
-            }
-        }
-
         // Retrieve id of the film
         val extras: Bundle? = intent.extras
         val idFilm : String = extras?.getString("idFilm")!!
 
         val movieService = MovieService(this.baseContext)
 
+        lateinit var actors : List<Actor>
+
         movieService.getMovie(idFilm, object : CallMovie() {
             override fun fireOnResponse(data: Movie) {
+                actors = data.actorList
+
                 Log.d("Test", data.toString())
                 binding.title.text = data.title
                 val date = LocalDate.parse(data.releaseDate)
@@ -131,6 +111,34 @@ class MovieActivity : AppCompatActivity() {
                 })*/
             }
         })
+
+        binding.bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.fragment1 -> {
+                    Log.d("Navigation", "Nav to 1")
+                    navController.navigate(R.id.seancesFragment)
+                    true
+                }
+                R.id.fragment2 -> {
+                    Log.d("Navigation", "Nav to 2")
+                    val args = bundleOf("actors" to actors)
+                    navController.navigate(R.id.castingFragment, args)
+                    true
+                }
+                R.id.fragment3 -> {
+                    Log.d("Navigation", "Nav to 3")
+                    val args = bundleOf("idFilm" to idFilm)
+                    navController.navigate(R.id.reviewsFragment, args)
+                    true
+                }
+                R.id.fragment4 -> {
+                    Log.d("Navigation", "Nav to 4")
+                    navController.navigate(R.id.newsFragment)
+                    true
+                }
+                else -> false
+            }
+        }
     }
 
 }
