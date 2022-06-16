@@ -1,7 +1,9 @@
 package com.example.test
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.test.data.movie.Movie
 import com.example.test.data.trailer.YoutubeTrailer
@@ -9,13 +11,17 @@ import com.example.test.databinding.ActivityMovieBinding
 import com.example.test.services.MovieService
 import com.example.test.services.callbacks.CallMovie
 import com.example.test.services.callbacks.CallTrailer
+import com.google.android.youtube.player.YouTubeBaseActivity
+import com.google.android.youtube.player.YouTubeInitializationResult
+import com.google.android.youtube.player.YouTubePlayer
+import com.google.android.youtube.player.YouTubePlayerView
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity : YouTubeBaseActivity() {
 
     private lateinit var _binding: ActivityMovieBinding
 
@@ -25,6 +31,9 @@ class MovieActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         _binding = ActivityMovieBinding.inflate(layoutInflater)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
+        setContentView(binding.root)
+
         val movieService = MovieService(this.baseContext)
 
         movieService.getMovie("tt3896198", object : CallMovie() {
@@ -47,13 +56,6 @@ class MovieActivity : AppCompatActivity() {
                     e.printStackTrace()
                 }
 
-                // Get youtube video
-                movieService.getTrailer("tt3896198", object : CallTrailer() {
-                    override fun fireOnResponse(data: YoutubeTrailer) {
-                        // Initialize youtube video
-                    }
-                })
-
                 binding.noteIMDB.text = data.imDbRating
                 binding.numberVoteIMDB.text = data.imDbRatingVotes
                 binding.noteMetacritic.text = data.ratings.metacritic
@@ -61,6 +63,32 @@ class MovieActivity : AppCompatActivity() {
             }
         })
 
-        setContentView(binding.root)
+        movieService.getTrailer("tt3896198", object : CallTrailer() {
+            override fun fireOnResponse(data: YoutubeTrailer) {
+                // Initialize youtube video
+                val view : YouTubePlayerView = binding.trailer
+                val listener : YouTubePlayer.OnInitializedListener = object : YouTubePlayer.OnInitializedListener {
+                    override fun onInitializationSuccess(
+                        provider : YouTubePlayer.Provider?,
+                        player : YouTubePlayer?,
+                        wasRestored : Boolean
+                    ) {
+                        player?.loadVideo(data.videoId)
+                        player?.play()
+                    }
+
+                    override fun onInitializationFailure(
+                        provider: YouTubePlayer.Provider?,
+                        error : YouTubeInitializationResult?
+                    ) {
+                        Toast.makeText(baseContext, "Video loading failed", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                val apiKey = BuildConfig.YOUTUBE_API_KEY
+                view.initialize(apiKey, listener)
+            }
+        })
+
+
     }
 }

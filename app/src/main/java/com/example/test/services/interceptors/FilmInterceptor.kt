@@ -2,6 +2,7 @@ package com.example.test.services.interceptors
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
@@ -15,10 +16,12 @@ class FilmInterceptor(val context: Context) : Interceptor {
         // see what request it is
         val url : String = chain.request().url.toString()
 
-        lateinit var file : String
+        var file : String = ""
         if(url.contains("Title")) {
+            Log.d("URL", "title")
             file = "json/film.json"
-        } else if(url.contains("YoutubeTrailer")) {
+        } else if(url.contains("YouTubeTrailer")) {
+            Log.d("URL", "trailer")
             file = "json/trailer.json"
         }
 

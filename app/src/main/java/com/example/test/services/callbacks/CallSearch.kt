@@ -10,7 +10,7 @@ import java.io.IOException
 abstract class CallSearch : Callback {
 
     protected fun runOnUIThread(task: Runnable) {
-        Handler(Looper.getMainLooper()).post(task);
+        Handler(Looper.getMainLooper()).post(task)
     }
 
     override fun onFailure(call: Call, e: IOException) {
