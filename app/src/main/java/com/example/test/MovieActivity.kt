@@ -20,9 +20,11 @@ import com.example.test.services.MovieService
 import com.example.test.services.callbacks.CallMovie
 import com.example.test.services.callbacks.CallTrailer
 import com.google.android.material.chip.Chip
-import com.google.android.youtube.player.*
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.options.IFramePlayerOptions
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.ui.DefaultPlayerUiController
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.time.LocalDate
@@ -48,8 +50,8 @@ class MovieActivity : AppCompatActivity() {
         setContentView(binding.root)
         //setSupportActionBar(binding.toolbar)
 
-        //val youtubePlayerView : YouTubePlayerView = binding.youtubePlayerView
-        //lifecycle.addObserver(youtubePlayerView)
+        val youtubePlayerView : YouTubePlayerView = binding.youtubePlayerView
+        lifecycle.addObserver(youtubePlayerView)
 
         binding.toolbar.setNavigationOnClickListener {
             val intent : Intent = Intent(this.baseContext, MainActivity::class.java)
@@ -116,12 +118,16 @@ class MovieActivity : AppCompatActivity() {
             override fun fireOnResponse(data: YoutubeTrailer) {
                 // Initialize youtube video
 
-                /*youtubePlayerView.initialize(object :
+                val options: IFramePlayerOptions = IFramePlayerOptions.Builder().controls(0).build()
+
+                youtubePlayerView.initialize(object :
                     AbstractYouTubePlayerListener() {
-                    fun onReady(youTubePlayer: YouTubePlayer) {
-                        youTubePlayer.cueVideo(data.videoId, 0)
+                    override fun onReady(youTubePlayer: YouTubePlayer) {
+                        val defaultPlayerUiController = DefaultPlayerUiController(youtubePlayerView, youTubePlayer)
+                        youtubePlayerView.setCustomPlayerUi(defaultPlayerUiController.rootView)
+                        youTubePlayer.cueVideo(data.videoId, 0F)
                     }
-                })*/
+                }, options)
             }
         })
 
@@ -154,5 +160,4 @@ class MovieActivity : AppCompatActivity() {
             }
         }
     }
-
 }

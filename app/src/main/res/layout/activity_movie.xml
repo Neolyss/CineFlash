@@ -66,8 +66,10 @@
 
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
+
                 app:autoPlay="false"
-                app:videoId="wUn05hdkhjM" >
+                app:enableAutomaticInitialization="false">
+                <!--app:videoId="wUn05hdkhjM" -->
 
             </com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView>
 
