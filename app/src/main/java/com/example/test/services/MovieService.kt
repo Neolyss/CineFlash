@@ -19,7 +19,7 @@ class MovieService(context: Context) {
 
     private val client: OkHttpClient = OkHttpClient
         .Builder()
-        .addInterceptor(FilmInterceptor(context))
+        //.addInterceptor(FilmInterceptor(context))
         .build()
 
     fun getMovie(filmId : String, callback: CallMovie) {

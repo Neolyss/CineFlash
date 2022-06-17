@@ -15,7 +15,7 @@ class ReviewService(context: Context)  {
 
     private val client: OkHttpClient = OkHttpClient
         .Builder()
-        .addInterceptor(ReviewInterceptor(context))
+        //.addInterceptor(ReviewInterceptor(context))
         .build()
 
     fun getUserReviews(filmId: String, callback: CallUserReview) {

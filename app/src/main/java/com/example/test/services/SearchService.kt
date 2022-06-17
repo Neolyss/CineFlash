@@ -15,7 +15,7 @@ class SearchService(context: Context) {
 
     private val client: OkHttpClient = OkHttpClient
         .Builder()
-        .addInterceptor(SearchInterceptor(context))
+        //.addInterceptor(SearchInterceptor(context))
         .build()
 
     fun getSearch(search: String, callback: CallSearch) {

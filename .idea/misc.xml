@@ -7,6 +7,7 @@
         <entry key="..\:/CineFlash/app/src/main/res/layout/activity_bookshelf.xml" value="0.26358695652173914" />
         <entry key="..\:/CineFlash/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/CineFlash/app/src/main/res/layout/activity_movie.xml" value="0.25" />
+        <entry key="..\:/CineFlash/app/src/main/res/layout/activity_splash.xml" value="0.1828125" />
         <entry key="..\:/CineFlash/app/src/main/res/layout/actor_view.xml" value="0.5" />
         <entry key="..\:/CineFlash/app/src/main/res/layout/content_main.xml" value="0.22" />
         <entry key="..\:/CineFlash/app/src/main/res/layout/film_card.xml" value="0.5" />
@@ -17,7 +18,7 @@
         <entry key="..\:/CineFlash/app/src/main/res/layout/fragment_movies.xml" value="0.25" />
         <entry key="..\:/CineFlash/app/src/main/res/layout/fragment_news.xml" value="0.18541666666666667" />
         <entry key="..\:/CineFlash/app/src/main/res/layout/fragment_reviews.xml" value="0.33" />
-        <entry key="..\:/CineFlash/app/src/main/res/layout/fragment_seances.xml" value="0.5" />
+        <entry key="..\:/CineFlash/app/src/main/res/layout/fragment_seances.xml" value="0.67" />
         <entry key="..\:/CineFlash/app/src/main/res/layout/review_view.xml" value="0.33" />
         <entry key="..\:/CineFlash/app/src/main/res/layout/user_review_view.xml" value="0.3614583333333333" />
         <entry key="..\:/CineFlash/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.3625" />
