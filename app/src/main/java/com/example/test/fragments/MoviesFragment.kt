@@ -8,12 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.test.MovieActivity
-import com.example.test.R
 import com.example.test.adapters.TrendAdapter
+import com.example.test.data.history.Film
+import com.example.test.data.search.Result
+import com.example.test.data.search.Search
 import com.example.test.data.trends.Trends
 import com.example.test.databinding.FragmentMoviesBinding
 import com.example.test.services.MovieService
+import com.example.test.services.SearchService
+import com.example.test.services.callbacks.CallSearch
 import com.example.test.services.callbacks.CallTrend
+import com.example.test.services.callbacks.CallUserSearch
 
 /**
  * A simple [Fragment] subclass.
@@ -59,15 +64,19 @@ class MoviesFragment : Fragment() {
             }
         })
 
-        binding.textField.setEndIconOnClickListener {
-            val search = binding.textInput.text
-            // Handle the search
-            //TODO Handle search
+        val searchService : SearchService = this.context?.let { SearchService(it) }!!
 
-            // Launch activity film
-            val intent : Intent = Intent(this.context, MovieActivity::class.java)
-            intent.putExtra("idFilm", "tt3896198")
-            startActivity(intent)
+        binding.textField.setEndIconOnClickListener {
+            val search = binding.textInput.text.toString()
+            // Handle the search
+            searchService.getSearch(search, object : CallUserSearch() {
+                override fun fireOnResponse(data: Search) {
+                    val firstFilm = data.results[0]
+                    val intent : Intent = Intent(context, MovieActivity::class.java)
+                    intent.putExtra("idFilm", firstFilm.id)
+                    startActivity(intent)
+                }
+            })
         }
 
         // Inflate the layout for this fragment
