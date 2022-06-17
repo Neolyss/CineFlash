@@ -32,6 +32,7 @@
             android:name=".MovieActivity"
             android:exported="false"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.Test"
             android:configChanges="orientation|screenSize|keyboardHidden|smallestScreenSize|screenLayout"/>
         <activity
             android:name=".MainActivity"
