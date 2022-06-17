@@ -30,6 +30,7 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.*
+import java.util.function.LongFunction
 
 
 class MovieActivity : AppCompatActivity() {
@@ -67,6 +68,8 @@ class MovieActivity : AppCompatActivity() {
         val extras: Bundle? = intent.extras
         val idFilm : String = extras?.getString("idFilm")!!
 
+        Log.d("Movie", idFilm)
+
         val movieService = MovieService(this.baseContext)
 
         lateinit var actors : List<Actor>
@@ -75,6 +78,8 @@ class MovieActivity : AppCompatActivity() {
 
         movieService.getMovie(idFilm, object : CallMovie() {
             override fun fireOnResponse(data: Movie) {
+                Log.d(TAG, "HERE")
+
                 actors = data.actorList
                 directors = data.directorList
                 writers = data.writerList
@@ -88,11 +93,15 @@ class MovieActivity : AppCompatActivity() {
                 var sdf = SimpleDateFormat("mm")
 
                 try {
-                    val dt: Date? = sdf.parse(data.runtimeMins)
-                    sdf = SimpleDateFormat("H'h'mm")
-                    val duration = dt?.let { sdf.format(it) }
+                    if(data.runtimeMins != null) {
+                        val dt: Date? = sdf.parse(data.runtimeMins)
+                        sdf = SimpleDateFormat("H'h'mm")
+                        val duration = dt?.let { sdf.format(it) }
 
-                    binding.datetime.text = "$formattedDate · $duration"
+                        binding.datetime.text = "$formattedDate · $duration"
+                    } else {
+                        binding.datetime.text = formattedDate
+                    }
                 } catch (e: ParseException) {
                     e.printStackTrace()
                 }

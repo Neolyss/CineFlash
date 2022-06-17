@@ -2,6 +2,7 @@ package com.example.test.services.callbacks
 
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
@@ -14,7 +15,7 @@ abstract class CallSearch : Callback {
     }
 
     override fun onFailure(call: Call, e: IOException) {
-        e.printStackTrace()
+        Log.e("Fail", "Failed " + e.printStackTrace())
     }
 
 }

@@ -1,6 +1,7 @@
 package com.example.test.services
 
 import android.content.Context
+import android.util.Log
 import com.example.test.BuildConfig
 import com.example.test.services.callbacks.CallMovie
 import com.example.test.services.callbacks.CallTrailer
@@ -12,6 +13,10 @@ import java.net.URLEncoder
 
 class MovieService(context: Context) {
 
+    companion object {
+        private val TAG = "Movie"
+    }
+
     private val client: OkHttpClient = OkHttpClient
         .Builder()
         .addInterceptor(FilmInterceptor(context))
@@ -21,6 +26,8 @@ class MovieService(context: Context) {
         val request: Request = Request.Builder()
             .url("http://imdb-api.com/en/API/Title/" + URLEncoder.encode(BuildConfig.API_KEY, "UTF-8") + "/" + URLEncoder.encode(filmId, "UTF-8") + "/Trailer,Ratings")
             .build()
+
+        Log.d(TAG, request.url.toString())
 
         client.newCall(request).enqueue(callback)
     }
