@@ -22,7 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginRight="8dp"
             android:orientation="vertical">
 
@@ -30,8 +29,13 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TextView"
-                android:textAlignment="center" />
+                android:text="@string/bookshelf"
+                android:textAlignment="center"
+                android:textAppearance="?attr/textAppearanceHeadline4"/>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/textField"
@@ -48,6 +52,10 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/trendsMarvel"
                 android:layout_width="match_parent"
@@ -60,6 +68,10 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 tools:listitem="@layout/film_card" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="100dp"/>
 
         </LinearLayout>
     </ScrollView>

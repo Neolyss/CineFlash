@@ -81,4 +81,21 @@
     <string name="reviewTitle">reviewTitle</string>
     <string name="actors">Actors</string>
     <string name="filmCrew">Film Crew</string>
+    <string name="bookshelf">Bookshelf</string>
+    <string name="reserve">RESERVE NOW</string>
+    <string name="nextShow">Next nearest seances</string>
+    <string name="cinema">Cinema Pathe Le Mans</string>
+    <string name="hour">8:15pm</string>
+    <string name="version">OV</string>
+    <string name="nearest">Nearest</string>
+
+    <string name="date_1">WEN. 24 NOV.</string>
+    <string name="date_2">THU. 25 NOV.</string>
+    <string name="date_3">FRI. 26 NOV.</string>
+    <string name="date_4">SAT. 27 NOV.</string>
+    <string name="date_5">SUN. 28 NOV.</string>
+    <string name="nextShows">Next Seances</string>
+    <string name="incoming">Incoming</string>
+
+
 </resources>
