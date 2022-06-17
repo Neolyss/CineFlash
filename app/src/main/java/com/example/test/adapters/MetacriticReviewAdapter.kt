@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
 import com.example.test.data.movie.Actor
 import com.example.test.data.reviews.MetacriticReviews
 import com.example.test.data.reviews.UserReviews
-import com.example.test.databinding.ActorViewBinding
 import com.example.test.databinding.ReviewViewBinding
 
 class MetacriticReviewAdapter(private val reviews: MetacriticReviews, private val fragment: Fragment) : RecyclerView.Adapter<MetacriticReviewAdapter.ReviewViewHolder>() {

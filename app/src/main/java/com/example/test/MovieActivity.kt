@@ -6,9 +6,14 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.navigation.fragment.NavHostFragment
 import com.example.test.data.movie.Actor
+import com.example.test.data.movie.Director
 import com.example.test.data.movie.Movie
+import com.example.test.data.movie.Writer
 import com.example.test.data.trailer.YoutubeTrailer
 import com.example.test.databinding.ActivityMovieBinding
 import com.example.test.services.MovieService
@@ -36,11 +41,15 @@ class MovieActivity : AppCompatActivity() {
 
         _binding = ActivityMovieBinding.inflate(layoutInflater)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LOCKED
+        val windowInsetsController = ViewCompat.getWindowInsetsController(window.decorView) ?: return
+        // Hide both the status bar and the navigation bar
+        windowInsetsController.hide(WindowInsetsCompat.Type.navigationBars())
+        windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         setContentView(binding.root)
         //setSupportActionBar(binding.toolbar)
 
         //val youtubePlayerView : YouTubePlayerView = binding.youtubePlayerView
-       // lifecycle.addObserver(youtubePlayerView);
+        //lifecycle.addObserver(youtubePlayerView)
 
         binding.toolbar.setNavigationOnClickListener {
             val intent : Intent = Intent(this.baseContext, MainActivity::class.java)
@@ -59,10 +68,14 @@ class MovieActivity : AppCompatActivity() {
         val movieService = MovieService(this.baseContext)
 
         lateinit var actors : List<Actor>
+        lateinit var directors : List<Director>
+        lateinit var writers : List<Writer>
 
         movieService.getMovie(idFilm, object : CallMovie() {
             override fun fireOnResponse(data: Movie) {
                 actors = data.actorList
+                directors = data.directorList
+                writers = data.writerList
 
                 Log.d("Test", data.toString())
                 binding.title.text = data.title
@@ -121,12 +134,13 @@ class MovieActivity : AppCompatActivity() {
                 }
                 R.id.fragment2 -> {
                     Log.d("Navigation", "Nav to 2")
-                    val args = bundleOf("actors" to actors)
+                    val args = bundleOf("actors" to actors, "directors" to directors, "writers" to writers)
                     navController.navigate(R.id.castingFragment, args)
                     true
                 }
                 R.id.fragment3 -> {
                     Log.d("Navigation", "Nav to 3")
+
                     val args = bundleOf("idFilm" to idFilm)
                     navController.navigate(R.id.reviewsFragment, args)
                     true

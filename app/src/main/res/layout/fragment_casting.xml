@@ -2,20 +2,57 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.CastingFragment"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".fragments.CastingFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/actors"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/actor_view" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/crew"
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/actors"
+            android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/actors"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            tools:listitem="@layout/casting_view" />
+
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    </androidx.recyclerview.widget.RecyclerView>
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/filmCrew"
+            android:textAppearance="?attr/textAppearanceTitleLarge" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/crew"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            tools:listitem="@layout/casting_view">
+
+        </androidx.recyclerview.widget.RecyclerView>
+    </LinearLayout>
+
 </LinearLayout>

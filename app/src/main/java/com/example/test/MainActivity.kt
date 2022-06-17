@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val windowInsetsController = ViewCompat.getWindowInsetsController(window.decorView) ?: return
         // Hide both the status bar and the navigation bar
         windowInsetsController.hide(WindowInsetsCompat.Type.navigationBars())
-        windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE;
+        windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         //windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
         /*
         WindowCompat.setDecorFitsSystemWindows(window, true)

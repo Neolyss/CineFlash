@@ -9,16 +9,16 @@ import com.bumptech.glide.Glide
 import com.example.test.MovieActivity
 import com.example.test.data.history.History
 import com.example.test.data.movie.Actor
-import com.example.test.databinding.ActorViewBinding
+import com.example.test.databinding.CastingViewBinding
 import com.example.test.databinding.FilmHistoryCardBinding
 
 class ActorAdapter(private val actors: List<Actor>, private val fragment: Fragment) : RecyclerView.Adapter<ActorAdapter.ActorViewHolder>() {
 
-    inner class ActorViewHolder(val binding: ActorViewBinding) :
+    inner class ActorViewHolder(val binding: CastingViewBinding) :
         RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
-        val binding = ActorViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = CastingViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
         return ActorViewHolder(binding)
     }

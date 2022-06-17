@@ -6,6 +6,11 @@
     tools:context=".fragments.CastingFragment"
     android:orientation="vertical">
 
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/userReviews"
         android:layout_width="match_parent"
@@ -13,6 +18,10 @@
         tools:listitem="@layout/review_view">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/reviews"
