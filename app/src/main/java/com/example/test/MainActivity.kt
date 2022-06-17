@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         val windowInsetsController = ViewCompat.getWindowInsetsController(window.decorView) ?: return
         windowInsetsController.hide(WindowInsetsCompat.Type.navigationBars());
-        windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_BARS_BY_SWIPE
+        windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
     }
 
     /*override fun onSupportNavigateUp(): Boolean {
